@@ -3,26 +3,27 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
 export default function Home() {
-  const [count, setCount] = useState<number>(0); // Initialize the count state
+  const [count, setCount] = useState<number>(0);  // Initialize the count state
+  const [isLimited, setIsLimited] = useState<boolean>(true); // State to toggle limits
 
   const updateCount = (value: number) => {
     let newCount = count + value;  // Add the new value to the current count
 
-    // Wrap-around logic: similar to the Python logic provided
-    if (newCount > 8) {
-      newCount = -7 + (newCount - 9);
-    } else if (newCount < -7) {
-      newCount = 8 + (newCount + 8);
+    // Only apply limits if isLimited is true
+    if (isLimited) {
+      // Wrap-around logic: similar to the Python logic provided
+      if (newCount > 8) {
+        newCount = -7 + (newCount - 9);
+      } else if (newCount < -7) {
+        newCount = 8 + (newCount + 8);
+      }
     }
 
     setCount(newCount);  // Update the count state
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = parseInt(e.target.value, 10);  // Convert input value to a number
-    if (!isNaN(inputValue)) {
-      updateCount(inputValue);  // Call updateCount if the input is a valid number
-    }
+  const handleLimitToggle = () => {
+    setIsLimited(!isLimited);  // Toggle the isLimited state
   };
 
   // Modified handleButtonClick to accept a value
@@ -31,7 +32,7 @@ export default function Home() {
   };
 
   return (
-    <div className="w-full min-h-screen flex flex-col items-center justify-center lg:p-10 p-6 bg-amber-200">
+    <div className="w-full min-h-screen flex flex-col items-center justify-center p-10 bg-amber-200">
       <h1 className="text-black text-center text-5xl mb-8 font-extrabold">KamiKozers</h1>
       <div className="bg-white w-56 h-56 text-center items-center justify-center flex text-9xl text-black rounded-xl">{count}</div>
       <div className="flex justify-between space-x-4 w-full lg:px-4 mt-10 md:w-3/4 lg:w-1/2">
@@ -45,6 +46,11 @@ export default function Home() {
         <Button className="w-16 h-16" onClick={() => handleButtonClick(-2)} variant="twom">-2</Button>
         <Button className="w-16 h-16" onClick={() => handleButtonClick(-3)} variant="threem">-3</Button>
         <Button className="w-16 h-16" onClick={() => handleButtonClick(-5)} variant="fivem">-5</Button>
+      </div>
+      <div className="flex justify-center items-center space-x-4 w-full lg:px-4 mt-4 md:w-3/4 lg:w-1/2">
+        <Button className="w-64 h-16" onClick={handleLimitToggle} variant="default">
+          {isLimited ? 'No Limits' : 'Circle'}
+        </Button>
       </div>
     </div>
   );
