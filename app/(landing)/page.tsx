@@ -34,13 +34,13 @@ export default function Home() {
     <div className="w-full min-h-screen flex flex-col items-center justify-center p-10 bg-amber-200">
       <h1 className="text-black text-center text-5xl mb-8 font-extrabold">KamiKozers</h1>
       <div className="bg-white w-56 h-56 text-center items-center justify-center flex text-9xl text-black rounded-xl">{count}</div>
-      <div className="flex justify-between space-x-4 w-full px-4 mt-10 md:w-3/4 lg:w-1/2">
+      <div className="flex justify-between space-x-4 w-full px-2 mt-10 md:w-3/4 lg:w-1/2">
         <Button className="w-16 h-16" onClick={() => handleButtonClick(1)} variant="one">+1</Button>
         <Button className="w-16 h-16" onClick={() => handleButtonClick(2)} variant="two">+2</Button>
         <Button className="w-16 h-16" onClick={() => handleButtonClick(3)} variant="three">+3</Button>
         <Button className="w-16 h-16" onClick={() => handleButtonClick(5)} variant="five">+5</Button>
       </div>
-      <div className="flex justify-between space-x-4 w-full px-4 mt-4 md:w-3/4 lg:w-1/2">
+      <div className="flex justify-between space-x-4 w-full px-2 mt-4 md:w-3/4 lg:w-1/2">
         <Button className="w-16 h-16" onClick={() => handleButtonClick(-1)} variant="onem">-1</Button>
         <Button className="w-16 h-16" onClick={() => handleButtonClick(-2)} variant="twom">-2</Button>
         <Button className="w-16 h-16" onClick={() => handleButtonClick(-3)} variant="threem">-3</Button>
